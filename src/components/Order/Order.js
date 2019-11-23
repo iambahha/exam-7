@@ -8,26 +8,26 @@ class Orders extends Component {
         let totalCost = this.props.totalCost;
         if (this.props.orders.length) {
             orders = this.props.orders.map((item, index) => {
-                if (item.num !== 0) {
-                    const menuIndex = MENU.findIndex(x => x.name===item.name);
+                    const menuIndex = MENU.findIndex(food => food.name===item.name);
                     totalCost += item.num * MENU[menuIndex].cost;
 
                     return (
-                        <li className="order" key={index}>{item.name} <p> <span className="num" >x{item.num}</span> {MENU[menuIndex].cost} KGS <button onClick={() => this.props.removeOrder(index)}> </button></p> </li>
+                        <li className="order" key={index}>{item.name}
+                        <p> <span className="num" >x{item.num} </span> {MENU[menuIndex].cost} KGS
+                        <button onClick={this.props.removeOrder}>X</button></p>
+                        </li>
                     );
-                } else {
-                    return null;
-                }
+
             });
         } else {
             orders = 'Order is empty!';
         }
 
         return (
-            <React.Fragment>
-                <ul>{orders}</ul>
+            <div>
+                <ol>{orders}</ol>
                 <p className="total">Общая стоимость заказа: <b>{totalCost} сом</b></p>
-            </React.Fragment>
+            </div>
         );
     }
 }

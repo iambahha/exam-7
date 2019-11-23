@@ -1,0 +1,27 @@
+.AddItems{
+    width: 60%;
+}
+.items{
+    display: flex;
+    flex-wrap: wrap;
+}
+.item{
+    background-color: aquamarine;
+    padding: 5px 0 5px 120px;
+    margin: 5px;
+    width: 30%;
+    border-radius: 30px;
+}
+.item:hover{
+    background-color: aqua;
+}
+.item:nth-child(odd){
+    background: aquamarine url("../imgs/45332.png") ;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.item:nth-child(even){
+    background: aquamarine url("../imgs/cheers_drink_drinks_alcohol_party_birthday-512.png") ;
+    background-size: contain;
+    background-repeat: no-repeat;
+}

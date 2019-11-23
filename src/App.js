@@ -10,40 +10,42 @@ class App extends Component {
     };
 
     addOrder = name => {
-        const orders = this.state.orders;
-        const index = orders.findIndex(x => x.name===name);
+        const index = this.state.orders.findIndex(x => x.name===name);
         if (index === -1) {
-            orders.push({name: name, num: 1});
+            this.state.orders.push({name: name, num: 1});
         } else {
-            orders[index].num++;
+            this.state.orders[index].num++;
         }
-        this.setState(orders);
+        this.setState(this.state.orders);
     };
 
-    removeOrder = index => {
-        const orders = this.state.orders;
-
-        if ( orders[index].num > 1) {
-            orders[index].num--;
-        } else {
-            orders.pop(index);
+    removeOrder = name =>{
+        let index = this.state.orders.findIndex(item => item.name === name);
+        let copyIng = [...this.state.orders];
+        let copyOb = {...copyIng[index]};
+        copyOb.num--;
+        if (copyOb.num <= 0){
+            copyOb.num = 0;
         }
-        this.setState(orders);
+        copyIng[index] = copyOb;
+        this.setState({orders : copyIng})
     };
 
     render() {
         return (
-            <div className="App">
+            <div className="container">
                 <div className="Orders">
                     <Orders
                         orders={this.state.orders}
                         totalCost={this.state.totalCost}
-                        removeOrder={index => this.removeOrder(index)}
+                        removeOrder={name => this.removeOrder(name)}
                     />
                 </div>
                 <div className="AddItems">
                     <h1>Menu</h1>
-                    <AddItems addOrder={name => this.addOrder(name)} />
+                    <div className="items">
+                        <AddItems addOrder={name => this.addOrder(name)} />
+                    </div>
                 </div>
 
             </div>
