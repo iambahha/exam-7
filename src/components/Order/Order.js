@@ -12,12 +12,11 @@ class Orders extends Component {
                     totalCost += item.num * MENU[menuIndex].cost;
 
                     return (
-                        <li className="order" key={index}>{item.name}
-                        <p> <span className="num" >x{item.num} </span> {MENU[menuIndex].cost} KGS
+                        <li className="order" key={index}><p> {' ' +item.name+' '}
+                        <span className="num" >x{item.num} </span> <b>{MENU[menuIndex].cost} KGS</b>
                         <button onClick={this.props.removeOrder}>X</button></p>
                         </li>
                     );
-
             });
         } else {
             orders = 'Order is empty!';
